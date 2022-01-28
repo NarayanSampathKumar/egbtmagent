@@ -1,0 +1,6 @@
+apiVersion: apm.egapm/v1
+kind: BtmAgent
+metadata:
+  name: btmagent-sample
+spec:
+  # TODO(user): Add fields here

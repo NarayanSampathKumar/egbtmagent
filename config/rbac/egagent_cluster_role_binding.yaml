@@ -1,0 +1,13 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: egagent-role-binding
+  namespace: egagent
+subjects:
+- kind: ServiceAccount
+  name: egagent
+  namespace: egagent
+roleRef:
+  kind: ClusterRole
+  name: egagent-role
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,49 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: egbtmagent.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: BtmAgent is the Schema for the btmagents API
+      displayName: Btm Agent
+      kind: BtmAgent
+      name: btmagents.apm.egapm
+      version: v1
+  description: Operator for installing agent and enabling btm
+  displayName: egbtmagent
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - eg
+  - egbtm
+  - egagent
+  links:
+  - name: Egbtmagent
+    url: https://egbtmagent.domain
+  maintainers:
+  - email: narayan.gmail.com
+    name: narayan
+  maturity: alpha
+  provider:
+    name: narayan
+  version: 0.0.0

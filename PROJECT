@@ -1,0 +1,26 @@
+domain: egapm
+layout:
+- go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: egbtmagent
+repo: github.com/NarayanSampathKumar/egbtmagent
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: egapm
+  group: apm
+  kind: BtmAgent
+  path: github.com/NarayanSampathKumar/egbtmagent/api/v1
+  version: v1
+- group: apps
+  kind: Deployment
+  path: k8s.io/api/apps/v1
+  version: v1
+  webhooks:
+    defaulting: true
+    webhookVersion: v1
+version: "3"
