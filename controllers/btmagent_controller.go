@@ -163,9 +163,12 @@ func (r *BtmAgentReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	//		return ctrl.Result{}, err
 	//	}
 	// Check if the mutatingWebhookConfiguration already exists, if not create a new one
-	// foundMwc := &mwc.MutatingWebhookConfiguration{}
-	// mutatingwebhookConfig := r.getMutatingWebhookConfigurationForBTM(BtmAgent)
-	// err = r.Get(ctx, types.NamespacedName{Name: mutatingwebhookConfig.Name, Namespace: ""}, foundMwc)
+	//    foundMwc := &mwc.MutatingWebhookConfiguration{}
+	foundmwc := &mwc.MutatingWebhookConfigurationList{}
+	mutatingwebhookConfig := r.getMutatingWebhookConfigurationForBTM(BtmAgent)
+	err = r.Get(ctx, types.NamespacedName{Name: mutatingwebhookConfig.Name, Namespace: ""}, foundmwc)
+	log.Info("values of BtmAgent", "BtmAgent.MonitoredNamespaces", BtmAgent.MonitoredNamespaces, "BtmAgent.UnMonitoredNamespaces", BtmAgent.UnMonitoredNamespaces, "BtmAgent.matchingLabels", BtmAgent.MatchingLabels)
+
 	// if err != nil && errors.IsNotFound(err) {
 	// 	//Define a new Namespace
 	// 	log.Info("Creating a new mwc", "mwc.Name", mutatingwebhookConfig.Name)
@@ -180,6 +183,7 @@ func (r *BtmAgentReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	// 	log.Error(err, "Failed to get Namespace")
 	// 	return ctrl.Result{}, err
 	// }
+
 	return ctrl.Result{}, nil
 }
 func (r *BtmAgentReconciler) getMutatingWebhookConfigurationForBTM(m *apmv1.BtmAgent) *mwc.MutatingWebhookConfiguration {
@@ -194,7 +198,7 @@ func (r *BtmAgentReconciler) getMutatingWebhookConfigurationForBTM(m *apmv1.BtmA
 			Kind:       "MutatingWebhookConfiguration",
 		},
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "mutating-webhook-configuration",
+			Name: "mdeployment.kb.io",
 		},
 		Webhooks: []mwc.MutatingWebhook{
 			{

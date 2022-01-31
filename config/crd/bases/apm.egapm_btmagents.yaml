@@ -36,10 +36,18 @@ spec:
           spec:
             description: BtmAgentSpec defines the desired state of BtmAgent
             properties:
-              foo:
-                description: Foo is an example field of BtmAgent. Edit btmagent_types.go
-                  to remove/update
-                type: string
+              matchingLabels:
+                items:
+                  type: string
+                type: array
+              monitoredNamespaces:
+                items:
+                  type: string
+                type: array
+              unMonitoredNamespaces:
+                items:
+                  type: string
+                type: array
             type: object
           status:
             description: BtmAgentStatus defines the observed state of BtmAgent

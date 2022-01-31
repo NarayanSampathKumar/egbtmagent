@@ -3,4 +3,10 @@ kind: BtmAgent
 metadata:
   name: btmagent-sample
 spec:
-  # TODO(user): Add fields here
+  monitoredNamespaces:
+    - default
+    - petclinic
+  unMonitoredNamespaces:
+    - egagent
+  matchingLabels:
+    - enablemwc

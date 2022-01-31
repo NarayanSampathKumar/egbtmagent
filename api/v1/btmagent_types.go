@@ -25,17 +25,13 @@ import (
 
 // BtmAgentSpec defines the desired state of BtmAgent
 type BtmAgentSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of BtmAgent. Edit btmagent_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	MonitoredNamespaces   []string `json:"monitoredNamespaces,omitempty"`
+	UnMonitoredNamespaces []string `json:"unMonitoredNamespaces,omitempty"`
+	MatchingLabels        []string `json:"matchingLabels,omitempty"`
 }
 
 // BtmAgentStatus defines the observed state of BtmAgent
 type BtmAgentStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
 }
 
 //+kubebuilder:object:root=true
