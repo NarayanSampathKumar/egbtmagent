@@ -2,7 +2,7 @@
 <h1>Steps to run the operator:</h1>
 <h3>Step - 1: Clone the code from github</h3>
 git clone https://github.com/NarayanSampathKumar/egbtmagent.git  <br>
-
+cd egbtmagent 
 <h3>Step - 2: Make the files executable:</h3>
    chmod 777 redeploy_operator.sh bin/* <br>
    
