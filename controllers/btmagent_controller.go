@@ -164,10 +164,10 @@ func (r *BtmAgentReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	//	}
 	// Check if the mutatingWebhookConfiguration already exists, if not create a new one
 	//    foundMwc := &mwc.MutatingWebhookConfiguration{}
-	foundmwc := &mwc.MutatingWebhookConfigurationList{}
+	foundmwc := &mwc.MutatingWebhookConfiguration{}
 	mutatingwebhookConfig := r.getMutatingWebhookConfigurationForBTM(BtmAgent)
 	err = r.Get(ctx, types.NamespacedName{Name: mutatingwebhookConfig.Name, Namespace: ""}, foundmwc)
-	log.Info("values of BtmAgent", "BtmAgent.MonitoredNamespaces", BtmAgent.MonitoredNamespaces, "BtmAgent.UnMonitoredNamespaces", BtmAgent.UnMonitoredNamespaces, "BtmAgent.matchingLabels", BtmAgent.MatchingLabels)
+	log.Info("values of BtmAgent", "BtmAgent.Spec.MonitoredNamespaces", BtmAgent.Spec.MonitoredNamespaces, "BtmAgent.Spec.UnMonitoredNamespaces", BtmAgent.Spec.UnMonitoredNamespaces, "BtmAgent.Spec.matchingLabels", BtmAgent.Spec.MatchingLabels)
 
 	// if err != nil && errors.IsNotFound(err) {
 	// 	//Define a new Namespace
