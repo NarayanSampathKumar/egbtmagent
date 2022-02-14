@@ -11,7 +11,8 @@ cd egbtmagent
       “IMAGE_TAG_BASE ?= 172.16.8.78:5000/egbtmagent” to “IMAGE_TAG_BASE ?= egapm/egbtmagent”<br>
    2.	And redeploy_operator.sh <br>
       “operator-sdk run bundle 172.16.8.78:5000/egbtmagent-bundle:v0.0.1 --skip-tls --timeout 15m0s” to “operator-sdk run bundle docker.io/egapm/egbtmagent-bundle:v0.0.1 --timeout 15m0s”<br>
-<h3>Step - 4. Execute the sh file with ./redeploy_operator.sh command</h3>
+<h3>Step - 4. Execute the sh file with</h3>
+./redeploy_operator.sh
 <h3>Step - 5. To cleanup the operator Run:</h3>
       operator-sdk cleanup egbtmagent --cleanup-all=true<br>
 <h3>Step - 6. If any error during "operator-sdk run bundle" command run</h3>
