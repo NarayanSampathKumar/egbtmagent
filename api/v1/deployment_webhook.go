@@ -54,26 +54,20 @@ func (v *deploymentModifier) Handle(ctx context.Context, req admission.Request) 
 		deploymentlog.Info("Could not decode request!", "err", err)
 		return admission.Errored(http.StatusBadRequest, err)
 	}
-
-	if deployment.Namespace == "default" {
-		resourceVolumes = deployment.Spec.Template.Spec.Volumes
-		resourceInitContainers = deployment.Spec.Template.Spec.InitContainers
-
-		resourceVolumes = append(resourceVolumes, getegbtmVolume())
-		resourceInitContainers = append(resourceInitContainers, getInitContainers())
-
-		resourceContainers = deployment.Spec.Template.Spec.Containers
-
-		//append Environment Variables and volumeounts to every container
-		for _, container := range resourceContainers {
-			container.Env = addEnv(container.Env)
-			container.VolumeMounts = addVolumeMount(container.VolumeMounts)
-			newContainers = append(newContainers, container)
-		}
-		deployment.Spec.Template.Spec.Containers = newContainers
-		deployment.Spec.Template.Spec.InitContainers = resourceInitContainers
-		deployment.Spec.Template.Spec.Volumes = resourceVolumes
+	resourceVolumes = deployment.Spec.Template.Spec.Volumes
+	resourceInitContainers = deployment.Spec.Template.Spec.InitContainers
+	resourceVolumes = append(resourceVolumes, getegbtmVolume())
+	resourceInitContainers = append(resourceInitContainers, getInitContainers())
+	resourceContainers = deployment.Spec.Template.Spec.Containers
+	//append Environment Variables and volumeounts to every container
+	for _, container := range resourceContainers {
+		container.Env = addEnv(container.Env)
+		container.VolumeMounts = addVolumeMount(container.VolumeMounts)
+		newContainers = append(newContainers, container)
 	}
+	deployment.Spec.Template.Spec.Containers = newContainers
+	deployment.Spec.Template.Spec.InitContainers = resourceInitContainers
+	deployment.Spec.Template.Spec.Volumes = resourceVolumes
 	marshaledDeployment, err := json.Marshal(deployment)
 	if err != nil {
 		return admission.Errored(http.StatusInternalServerError, err)
