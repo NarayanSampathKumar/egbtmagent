@@ -1,4 +1,7 @@
 # egbtmagent
+<h1>Prerequisites</h1>
+1. Olm<br>
+2. cert-manager<br><br>
 <h1>Steps to run the operator:</h1>
 <h3>Step - 1: Clone the code from github</h3>
 git clone https://github.com/NarayanSampathKumar/egbtmagent.git  <br>
@@ -14,8 +17,8 @@ cd egbtmagent
 <h3>Step - 4. Execute the sh file with</h3>
 ./redeploy_operator.sh
 <h3>Step - 5. To cleanup the operator Run:</h3>
-      operator-sdk cleanup egbtmagent --cleanup-all=true<br>
+      operator-sdk cleanup egbtmagent --delete-all=true<br>
 <h3>Step - 6. If any error during "operator-sdk run bundle" command run</h3>
-     "operator-sdk cleanup egbtmagent --cleanup-all=true"<br>
+     "operator-sdk cleanup egbtmagent --delete-all=true"<br>
    and run command<br>
      "operator-sdk run bundle egapm/egbtmagent-bundle:v0.0.1 --timeout 15m0s" <br>
